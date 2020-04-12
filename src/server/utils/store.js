@@ -6,7 +6,8 @@ const createUserStore = () => {
   const save = (user) => {
     activeUsers[user.username] = {
       username: user.username,
-      lastVisited: user.lastVisited
+      lastVisited: user.lastVisited,
+      admin: user.isAdmin
     };
     return activeUsers;
   };

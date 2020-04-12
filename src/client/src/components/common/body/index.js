@@ -36,6 +36,10 @@ const Body = (props) => {
     logout();
   };
 
+  const handleHistory = () => {
+    history.push("/app/history");
+  };
+
   return (
     <>
       <AppBar position="static">
@@ -69,6 +73,7 @@ const Body = (props) => {
                 open={open}
                 onClose={handleClose}
               >
+                {props.admin && <MenuItem onClick={handleHistory}>User History</MenuItem>}
                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </Menu>
             </div>
@@ -83,11 +88,13 @@ const Body = (props) => {
 }
 
 Body.defaultProps = {
-  isLoggedIn: false
+  isLoggedIn: false,
+  admin: false
 };
 
 Body.propTypes = {
   isLoggedIn: PropTypes.bool,
+  admin: PropTypes.bool,
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.string]).isRequired
 };
 

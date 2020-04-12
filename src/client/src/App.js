@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import { Login, Home, Registration, Error } from "./containers";
+import { Login, Home, Registration, Error, History } from "./containers";
 import { createStore } from "./utils/store";
 import { NO_MATCH_MSG } from "./utils/constants";
 import rootReducer from "./store";
@@ -16,6 +16,7 @@ const App = () => (
         <Route path="/app" exact component={Login} />
         <Route path="/app/register" component={Registration} />
         <Route path="/app/home" component={Home} />
+        <Route path="/app/history" component={History} />
         <Route path="/app/error" component={Error} />
         <Route render={() => <Error message={NO_MATCH_MSG} />} />
       </Switch>

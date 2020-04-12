@@ -15,9 +15,9 @@ router.post("/login", (req, res) => {
       try {
         const isValid = await user.comparePassword(password);
         if (isValid) {
+          UserStore.save(user);
           await user.updateOne({ lastVisited: Date.now() });
           const accessToken = jwt.sign({ username: user.username }, ACCESS_TOKEN_SECRET, { expiresIn: "365d" });
-          UserStore.save(user);
 
           res.cookie("auth", accessToken, { httpOnly: true })
             .json({

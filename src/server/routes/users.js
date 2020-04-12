@@ -35,7 +35,13 @@ router.put("/register-user", (req, res) => {
 router.get("/history", authMiddleware, (req, res) => {
   User.find({})
     .then(users => {
-      res.json({ status: "OK", data: users });
+      const data = users.map(({ isAdmin, username, createdOn, lastVisited }) => ({
+        isAdmin,
+        username,
+        createdOn,
+        lastVisited
+      }));
+      res.json({ status: "OK", data });
     })
     .catch((error) => res.status(400).json({
       status: "NOT_OK",

@@ -20,8 +20,6 @@ export const userHistory = (state = initalState, action) => {
       return { ...state, loading: true, error: false };
     case ACTIONS.FETCH_USER_HISTORY_SUCCESS:
       return { ...state, loading: false, payload: action.payload }
-    case ACTIONS.FETCH_USER_HISTORY_FAILURE:
-      return { ...state, loading: false, error: true }
     default:
       return state;
   }
