@@ -47,7 +47,7 @@
     "build": "npm run build-server",
     "server": "node --inspect ./dist/app.js",
     "clean": "rimraf dist",
-    "dev": "SET NODE_ENV=dev && npm-run-all build-all server",
+    "dev": "SET NODE_ENV=dev && npm-run-all build-server server",
     "prod": "SET NODE_ENV=prod && npm-run-all build server",
     "transpile": "babel ./src/server --out-dir dist",
     "watch:dev": "nodemon",
