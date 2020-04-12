@@ -42,13 +42,12 @@
   "scripts": {
     "start": "npm run prod",
     "build-client": "cd ./src/client && rimraf ./build && npm run build",
-    "build-all": "npm-run-all clean build-client transpile",
     "build-server": "npm-run-all clean transpile",
     "build": "npm run build-server",
-    "server": "node --inspect ./dist/app.js",
+    "server": "node ./dist/app.js",
     "clean": "rimraf dist",
-    "dev": "SET NODE_ENV=dev && npm-run-all build-server server",
-    "prod": "SET NODE_ENV=prod && npm-run-all build server",
+    "dev": "NODE_ENV=dev && npm-run-all build server",
+    "prod": "NODE_ENV=prod && npm run server",
     "transpile": "babel ./src/server --out-dir dist",
     "watch:dev": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -62,14 +61,14 @@
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
     "mongoose": "^5.9.7",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.3.0",
+    "@babel/runtime": "^7.9.2",
+    "@babel/plugin-transform-runtime": "^7.9.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
-    "@babel/plugin-transform-runtime": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
-    "@babel/runtime": "^7.9.2",
     "nodemon": "^2.0.2",
     "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.2"
