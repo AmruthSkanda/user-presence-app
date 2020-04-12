@@ -6,19 +6,20 @@ import { session, pages, users } from "./routes";
 import socket from "./socket";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
+console.log("ENV: ", JSON.stringify(process.env, null, 2));
 // import cors from "cors";
 // import { corsOptions } from "./utils/cors";
 
+const MONGO_URI = process.env.MONGODB_URI || "mongodb://localhost/presense-db";
 const port = process.env.PORT || 8989;
-const wsPort = 8000;
+const wsPort = process.env.WEB_SCOKET_PORT || 8000;
 
 //connect to mongoDB
-const mongo_uri = "mongodb://localhost/presense-db";
-mongoose.connect(mongo_uri, { useNewUrlParser: true }, (err) => {
+mongoose.connect(MONGO_URI, { useNewUrlParser: true }, (err) => {
   if (err) {
     throw err;
   } else {
-    console.log(`Successfully connected to ${mongo_uri}`);
+    console.log(`Successfully connected to ${MONGO_URI}`);
   }
 });
 
@@ -26,7 +27,6 @@ mongoose.connect(mongo_uri, { useNewUrlParser: true }, (err) => {
 const app = express();
 
 //apply middlewares
-console.log("ENV: ", process.env.NODE_ENV)
 // app.use(cors(corsOptions));
 app.use(express.static(Path.join(__dirname, "../client/build")));
 app.use(bodyParser.json());

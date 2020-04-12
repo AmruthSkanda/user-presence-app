@@ -1,5 +1,4 @@
 export const ACCESS_TOKEN_SECRET = "veNRnAWe6inFuo8o2u8SLLZLjolYDmDP7SzL0YfYI";
-export const SESSION_TOKEN_SECRET = "my-secret";
 export const SALT_WORK_FACTOR = 10;
 
 export const status = {
