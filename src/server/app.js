@@ -28,7 +28,7 @@ const app = express();
 
 //apply middlewares
 // app.use(cors(corsOptions));
-app.use(express.static(Path.join(__dirname, "../client/build")));
+app.use(express.static(Path.join(__dirname, "../src/client/build")));
 app.use(bodyParser.json());
 app.use(cookieParser());
 

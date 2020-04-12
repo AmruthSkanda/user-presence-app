@@ -20,7 +20,7 @@ const Error = (props) => {
           Sorry...
         </Typography>
         <br />
-        <Typography variant="h4">
+        <Typography variant="h5">
           {props.message}
         </Typography>
         <br />
