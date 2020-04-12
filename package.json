@@ -2,6 +2,22 @@
   "name": "user-presence-app",
   "version": "1.0.0",
   "description": "Build a Presence service, similar to that of google docs, which shows people that are currently viewing a particular doc.",
+  "main": "src/server/app.js",
+  "repository": {
+    "type": "git",
+    "url": " https://git.heroku.com/user-presense-app"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "author": "Amruth Skanda",
+  "license": "MIT",
+  "engines": {
+    "node": "10.x",
+    "npm": "6.x"
+  },
   "babel": {
     "plugins": [
       "@babel/plugin-transform-runtime"
@@ -25,18 +41,18 @@
   },
   "scripts": {
     "start": "npm run prod",
-    "build-client": "cd ./src/client && npm run build",
-    "build": "npm-run-all clean build-client transpile",
+    "build-client": "cd ./src/client && rimraf ./build && npm run build",
+    "build-all": "npm-run-all clean build-client transpile",
+    "build-server": "npm-run-all clean transpile",
+    "build": "npm run build-server",
     "server": "node --inspect ./dist/app.js",
-    "clean": "rimraf dist && rimraf ./src/client/build",
+    "clean": "rimraf dist",
     "dev": "SET NODE_ENV=dev && npm-run-all build server",
     "prod": "SET NODE_ENV=prod && npm-run-all build server",
     "transpile": "babel ./src/server --out-dir dist",
     "watch:dev": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Amruth Skanda",
-  "license": "ISC",
   "dependencies": {
     "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",

@@ -6,8 +6,8 @@ import { session, pages, users } from "./routes";
 import socket from "./socket";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
-import cors from "cors";
-import { corsOptions } from "./utils/cors";
+// import cors from "cors";
+// import { corsOptions } from "./utils/cors";
 
 const port = process.env.PORT || 8989;
 const wsPort = 8000;
@@ -27,10 +27,8 @@ const app = express();
 
 //apply middlewares
 console.log("ENV: ", process.env.NODE_ENV)
-if (process.env.NODE_ENV === "dev") {
-}
-app.use(cors(corsOptions));
-app.use(express.static(Path.join(__dirname, "../../client/build")));
+// app.use(cors(corsOptions));
+app.use(express.static(Path.join(__dirname, "../client/build")));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
