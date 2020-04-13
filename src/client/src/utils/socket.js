@@ -1,5 +1,5 @@
 import openSocket from 'socket.io-client';
-import { SOCKET_URL } from "./constants";
+import { BASE_URL } from "./constants";
 
 const Socket = (() => {
   let socket;
@@ -7,7 +7,7 @@ const Socket = (() => {
   const getSocket = () => socket;
 
   const create = () => {
-    socket = openSocket(SOCKET_URL);
+    socket = openSocket(BASE_URL);
     return socket;
   };
 

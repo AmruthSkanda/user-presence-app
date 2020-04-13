@@ -51,6 +51,9 @@ export const logout = async () => {
     if (data.status === "OK") {
       Socket.disconnect();
       store.dispatch({ type: ACTIONS.LOGOUT_SUCCESS, payload: true });
+      setTimeout(() => {
+        store.dispatch({ type: ACTIONS.LOGOUT_RESET });
+      }, 3000);
     } else {
       throw data;
     }

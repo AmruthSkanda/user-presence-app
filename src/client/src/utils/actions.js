@@ -6,6 +6,7 @@ export const LOGIN_RESET = "app/auth/LOGIN_RESET";
 export const LOGOUT_PENDING = "app/auth/LOGOUT_PENDING";
 export const LOGOUT_SUCCESS = "app/auth/LOGOUT_SUCCESS";
 export const LOGOUT_FAILURE = "app/auth/LOGOUT_FAILURE";
+export const LOGOUT_RESET = "app/auth/LOGOUT_RESET";
 
 export const SIGN_UP_PENDING = "app/auth/SIGN_UP_PENDING";
 export const SIGN_UP_SUCCESS = "app/auth/SIGN_UP_SUCCESS";

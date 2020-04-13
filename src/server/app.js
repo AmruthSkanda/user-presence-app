@@ -2,17 +2,17 @@ import express from "express";
 import Path from 'path';
 import http from "http";
 import mongoose from "mongoose";
-import { session, pages, users } from "./routes";
-import socket from "./socket";
+import socketIo from "socket.io";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
-console.log("ENV: ", process.env);
+
+import { session, pages, users } from "./routes";
+import UserStore from "./utils/store";
 // import cors from "cors";
 // import { corsOptions } from "./utils/cors";
 
 const MONGO_URI = process.env.MONGODB_URI || "mongodb://localhost/presense-db";
 const port = process.env.PORT || 8989;
-const wsPort = process.env.WEB_SCOKET_PORT || 8000;
 
 //connect to mongoDB
 mongoose.connect(MONGO_URI, { useNewUrlParser: true }, (err) => {
@@ -37,12 +37,24 @@ app.use("/session", session);
 app.use("/users", users);
 app.use("/app*", pages);
 
-//create and start server
-const server = http
-  .createServer(app)
-  .listen(port, () => {
-    const { address: host, port } = server.address();
-    socket.listen(wsPort);
-    console.log(`HTTP Server started running on ${host}:${port}`);
-    console.log(`Web socket running on post: ${host}:${wsPort}`);
+//create server
+const server = http.createServer(app);
+
+//create socket
+const io = socketIo(server);
+
+io.on('connection', (client) => {
+  console.log("New client connected: ", client.id);
+  io.emit('activeUsers', UserStore.getAll());
+
+  client.on("disconnect", () => {
+    io.emit('activeUsers', UserStore.getAll());
+    console.log("Client disconnected", client.id);
   });
+});
+
+//start server
+server.listen(port, () => {
+  const { address: host, port } = server.address();
+  console.log(`HTTP Server started running on ${host}:${port}`);
+});

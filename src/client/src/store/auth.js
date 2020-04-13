@@ -42,6 +42,7 @@ export const logout = (state = initalState, action) => {
     case ACTIONS.LOGOUT_FAILURE:
       return { ...state, loading: false, error: true };
     case ACTIONS.LOGIN_PENDING:
+    case ACTIONS.LOGOUT_RESET:
       return { ...initalState };
     default:
       return state;
