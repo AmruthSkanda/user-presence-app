@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 import { Home } from "../components";
@@ -7,8 +7,8 @@ import { withStore, withAuth } from "../hocs";
 import { getActiveUsers } from "../actions";
 import Socket from "../utils/socket";
 
-const HomeContainer = (props) => {
-  useEffect(() => {
+export const HomeContainer = (props) => {
+  React.useEffect(() => {
     if (!Socket.getSocket())
       Socket.create();
     getActiveUsers();

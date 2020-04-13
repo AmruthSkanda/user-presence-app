@@ -1,5 +1,4 @@
 const env = process.env.NODE_ENV;
-console.log("ENV: ", env);
 
 export const BASE_URL = env === "production" ? "" : "http://localhost:8989";
 

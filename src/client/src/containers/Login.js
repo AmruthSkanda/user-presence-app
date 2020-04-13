@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 import { Login } from "../components";
 import { withStore } from "../hocs";
-import { useHistory } from "react-router-dom";
+import ReactRouterDom from "react-router-dom";
 
-const LoginContainer = (props) => {
-  const history = useHistory();
+export const LoginContainer = (props) => {
+  const history = ReactRouterDom.useHistory();
   const { loggingIn, loginSuccess } = props;
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!loggingIn && loginSuccess) {
       history.push("/app/home");
     }

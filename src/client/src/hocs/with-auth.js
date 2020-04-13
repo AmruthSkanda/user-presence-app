@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import myFetch from "../utils/request";
 import { Redirect } from "react-router-dom";
 
@@ -6,10 +6,10 @@ import { store } from '../App';
 import { LOGIN_SUCCESS } from '../utils/actions';
 
 const withAuth = (SecureComponent) => (props) => {
-  const [isLoading, setLoading] = useState(true);
-  const [redirect, setRedirect] = useState(false);
+  const [isLoading, setLoading] = React.useState(true);
+  const [redirect, setRedirect] = React.useState(false);
 
-  useEffect(() => {
+  React.useEffect(() => {
     async function checkAuth() {
       try {
         const res = await myFetch("/session/checkToken");

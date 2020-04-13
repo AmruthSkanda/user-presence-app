@@ -14,7 +14,7 @@ const createStore = (reducer) => {
 
   const dispatch = (action) => {
     state = reducer(state, action);
-    if (env !== "production") {
+    if (env === "development") {
       console.info("My Store updated: ", state);
     }
     listeners.forEach(listener => listener())

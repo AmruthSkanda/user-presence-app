@@ -1,9 +1,9 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import { store, StoreContext } from "../App";
 
 const withStore = (stateMapper = () => ({})) => (ContainerComponent) => {
   return (props) => {
-    const state = useContext(StoreContext);
+    const state = React.useContext(StoreContext);
     const pageState = stateMapper && stateMapper(state);
 
     return (
