@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import myFetch from "../utils/request";
 import { Redirect } from "react-router-dom";
 
+import { store } from '../App';
+import { LOGIN_SUCCESS } from '../utils/actions';
+
 const withAuth = (SecureComponent) => (props) => {
   const [isLoading, setLoading] = useState(true);
   const [redirect, setRedirect] = useState(false);
@@ -12,6 +15,7 @@ const withAuth = (SecureComponent) => (props) => {
         const res = await myFetch("/session/checkToken");
         if (res.status === 200) {
           setLoading(false);
+          store.dispatch({ type: LOGIN_SUCCESS, payload: res.data.data });
         } else {
           throw res;
         }

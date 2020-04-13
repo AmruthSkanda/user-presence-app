@@ -17,7 +17,11 @@ router.post("/login", (req, res) => {
         if (isValid) {
           UserStore.save(user);
           await user.updateOne({ lastVisited: Date.now() });
-          const accessToken = jwt.sign({ username: user.username }, ACCESS_TOKEN_SECRET, { expiresIn: "365d" });
+          const accessToken = jwt.sign({
+            username: user.username,
+            isAdmin: user.isAdmin,
+            lastVisited: user.lastVisited
+          }, ACCESS_TOKEN_SECRET, { expiresIn: "365d" });
 
           res.cookie("auth", accessToken, { httpOnly: true })
             .json({
@@ -56,7 +60,8 @@ router.get("/logout", (req, res) => {
 router.get("/checkToken", authMiddleware, (req, res) => {
   res.json({
     status: status.OK,
-    message: "Token is valid"
+    message: "Token is valid",
+    data: { user: req.user }
   })
 });
 
