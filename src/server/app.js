@@ -6,7 +6,7 @@ import { session, pages, users } from "./routes";
 import socket from "./socket";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
-console.log("ENV: ", JSON.stringify(process.env, null, 2));
+console.log("ENV: ", process.env);
 // import cors from "cors";
 // import { corsOptions } from "./utils/cors";
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash/get';
-import { makeStyles, Modal, Paper } from '@material-ui/core';
+import { makeStyles, Modal, Paper, Typography } from '@material-ui/core';
 
 import ActiveUsers from "./active-users";
 import PopoverContent from "./popover-content";
@@ -12,8 +12,23 @@ const useStyles = makeStyles(() => ({
   container: {
     height: "85%",
     display: "flex",
-    alignItems: "center",
-    justifyContent: "center"
+    flexDirection: "column",
+    alignItems: "center"
+  },
+  title: {
+    display: "flex",
+    flex: 0.4,
+    alignItems: "center"
+  },
+  main: {
+    display: "flex",
+    flex: 0.2,
+    alignItems: "center"
+  },
+  footer: {
+    display: "flex",
+    flex: 0.4,
+    alignItems: "flex-end"
   },
   modalWindow: {
     display: "flex",
@@ -39,27 +54,39 @@ const Home = ({ activeUsers, loggedInUser }) => {
   return (
     <Body isLoggedIn={true} admin={isAdmin}>
       <section className={classes.container}>
-        <ActiveUsers
-          users={shownUsers}
-          hiddenCount={hiddenUsers.length}
-          max={MAX}
-          handleMore={() => setDialog(true)} />
-        <Modal
-          open={showDialog}
-          onClose={handleClose}
-          className={classes.modalWindow}
-        >
-          <Paper className={classes.modalCtr}>
-            <PopoverContent users={hiddenUsers} />
-          </Paper>
-        </Modal>
+        <header className={classes.title}>
+          <Typography variant="h4">
+            Welcome {isAdmin ? "Admin!" : "User!"}
+          </Typography>
+        </header>
+        <main className={classes.main}>
+          <ActiveUsers
+            users={shownUsers}
+            hiddenCount={hiddenUsers.length}
+            max={MAX}
+            handleMore={() => setDialog(true)} />
+          <Modal
+            open={showDialog}
+            onClose={handleClose}
+            className={classes.modalWindow}
+          >
+            <Paper className={classes.modalCtr}>
+              <PopoverContent users={hiddenUsers} />
+            </Paper>
+          </Modal>
+        </main>
+        <footer className={classes.footer}>
+          <Typography variant="caption">
+            Created by: Amruth Skanda, 2020
+        </Typography>
+        </footer>
       </section>
     </Body>
   );
 };
 
 Home.propTypes = {
-  activeUsers: PropTypes.object,
+  activeUsers: PropTypes.array,
   loggedInUser: PropTypes.object
 };
 

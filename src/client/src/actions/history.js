@@ -14,7 +14,7 @@ export const getUserHistory = async () => {
   } catch (err) {
     store.dispatch({
       type: ACTIONS.FETCH_USER_HISTORY_SUCCESS,
-      payload: {}
+      payload: []
     });
   }
 };

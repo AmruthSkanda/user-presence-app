@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import map from "lodash/map";
-import { deepOrange, deepPurple, pink, teal, brown, green, grey } from '@material-ui/core/colors';
+import { deepOrange, deepPurple, pink, brown, amber, grey } from '@material-ui/core/colors';
 import { makeStyles, Avatar, Tooltip } from '@material-ui/core';
 
 import UserTip from './user-tip';
 import UserAvatar from './user-avatar';
 
-const useColors = makeStyles(() => map([deepOrange, deepPurple, teal, brown, green], (c) => ({
+const useColors = makeStyles(() => map([deepOrange, deepPurple, pink, brown, amber], (c) => ({
   color: "white",
   backgroundColor: c[500]
 })));
@@ -15,18 +15,20 @@ const useColors = makeStyles(() => map([deepOrange, deepPurple, teal, brown, gre
 const useStyles = makeStyles(() => ({
   listCtr: {
     listStyleType: "none",
+    padding: 0,
     display: "flex"
   },
   avatarCtr: {
-    marginRight: "-0.75em"
+    marginRight: "-0.85em"
   },
   lastAvatar: {
     color: "white",
     backgroundColor: grey[500]
   },
-  size: {
+  avatar: {
     height: "3em",
-    width: "3em"
+    width: "3em",
+    border: "white solid 3px"
   }
 }));
 
@@ -46,7 +48,7 @@ const ActiveUsers = ({ users, hiddenCount, handleMore }) => {
               <div>
                 <UserAvatar
                   initial={user.username[0]}
-                  className={`${colors[i]} ${classes.size}`}
+                  className={`${colors[i]} ${classes.avatar}`}
                   admin={user.admin} />
               </div>
             </Tooltip>
@@ -57,7 +59,7 @@ const ActiveUsers = ({ users, hiddenCount, handleMore }) => {
       {hiddenCount ? (<li key="last-item" className={classes.avatarCtr} onClick={handleMore}>
         <Avatar
           alt=""
-          className={`${classes.lastAvatar} ${classes.size}`} >
+          className={`${classes.lastAvatar} ${classes.avatar}`} >
           +{hiddenCount}
         </Avatar>
       </li>

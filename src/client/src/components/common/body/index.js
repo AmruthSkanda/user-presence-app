@@ -6,13 +6,16 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import StarIcon from '@material-ui/icons/Star';
 import MenuItem from '@material-ui/core/MenuItem';
+import { green } from '@material-ui/core/colors';
 import Menu from '@material-ui/core/Menu';
 import { useHistory } from 'react-router-dom';
 
 import { logout } from '../../../actions';
+import { Badge } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   container: {
     height: "100vh",
     margin: "auto 1em",
@@ -56,7 +59,17 @@ const Body = (props) => {
                 onClick={handleMenu}
                 color="inherit"
               >
-                <AccountCircle />
+                {props.admin ? (
+                  <Badge
+                    overlap="circle"
+                    anchorOrigin={{
+                      vertical: 'top',
+                      horizontal: 'left',
+                    }}
+                    badgeContent={<StarIcon style={{ color: green[500] }} />}>
+                    <AccountCircle fontSize="large" />
+                  </Badge>
+                ) : <AccountCircle fontSize="large" />}
               </IconButton>
               <Menu
                 id="menu-appbar"

@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import times from 'lodash/times';
 import map from 'lodash/map';
 import { makeStyles, Typography, List } from '@material-ui/core';
-import { green, blue, lime, orange, red, yellow, indigo, cyan, amber } from '@material-ui/core/colors';
+import { blue, lime, orange, red, yellow, indigo, cyan, amber, grey } from '@material-ui/core/colors';
 
 import HistoryItem from './history-item';
 import { Body } from '../common';
 
 const allColors = [];
 times(5, () => allColors.push(
-  green, blue, lime, orange, red, yellow, indigo, cyan, amber
+  blue, lime, orange, red, yellow, indigo, cyan, amber
 ));
 
 const useColors = makeStyles(() => map(allColors, (c) => ({
@@ -26,23 +26,15 @@ const useStyles = makeStyles(() => ({
   title: {
     padding: "8px 16px"
   },
-  center: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center"
+  noData: {
+    color: grey[500],
+    padding: "16px"
   }
 }));
 
 const History = ({ users }) => {
   const colors = useColors();
   const classes = useStyles();
-  if (!users.length) {
-    return (
-      <section className={classes.center}>
-        <Typography variant="h5">No history data</Typography>
-      </section>
-    )
-  }
 
   return (
     <Body isLoggedIn={true}>
@@ -50,13 +42,16 @@ const History = ({ users }) => {
         <Typography variant="h4" color="primary" className={classes.title}>
           User History
         </Typography>
-        <List>
-          {users.map((user, i) => (
-            <HistoryItem
-              color={colors[i]}
-              {...user} />)
-          )}
-        </List>
+        {!users.length ? (
+          <Typography variant="h5" className={classes.noData}>No history data</Typography>
+        ) : <List>
+            {users.map((user, i) => (
+              <HistoryItem
+                key={user.username}
+                color={colors[i]}
+                {...user} />)
+            )}
+          </List>}
       </section>
     </Body>
   );

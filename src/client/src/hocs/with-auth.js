@@ -25,7 +25,7 @@ const withAuth = (SecureComponent) => (props) => {
   }, []);
 
   if (isLoading) {
-    return <p>Loading....</p>
+    return <p>Authenticating....</p>
   } else if (redirect) {
     return <Redirect to="/app/error" />
   }

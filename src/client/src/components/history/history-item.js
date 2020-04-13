@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import capitalize from 'lodash/capitalize';
-import { makeStyles, ListItem, ListItemAvatar, ListItemText } from '@material-ui/core';
+import { ListItem, ListItemAvatar, ListItemText } from '@material-ui/core';
 import UserAvatar from '../home/user-avatar';
 import { formatLastVisitTS } from '../../utils';
 
@@ -26,9 +26,8 @@ const HistoryItem = ({ color, username, createdOn, lastVisited, isAdmin }) => {
 
 HistoryItem.propTypes = {
   username: PropTypes.string,
-  lastVisited: PropTypes.object,
-  lastVisited: PropTypes.object,
-  color: PropTypes.object,
+  lastVisited: PropTypes.string,
+  color: PropTypes.string,
   isAdmin: PropTypes.bool
 };
 

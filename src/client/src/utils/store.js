@@ -1,3 +1,4 @@
+const env = process.env.NODE_ENV;
 const createStore = (reducer) => {
   let state;
   const listeners = [];
@@ -13,7 +14,9 @@ const createStore = (reducer) => {
 
   const dispatch = (action) => {
     state = reducer(state, action);
-    console.info("My Store updated: ", state);
+    if (env !== "production") {
+      console.info("My Store updated: ", state);
+    }
     listeners.forEach(listener => listener())
   }
 

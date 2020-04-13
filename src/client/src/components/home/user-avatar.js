@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import toUpper from "lodash/toUpper";
 import { Avatar, Badge } from '@material-ui/core';
 import StarIcon from '@material-ui/icons/Star';
-import { pink } from '@material-ui/core/colors';
+import { green } from '@material-ui/core/colors';
 
 const UserAvatar = ({ initial, admin, className }) => {
   const avatar = (<Avatar
@@ -19,7 +19,7 @@ const UserAvatar = ({ initial, admin, className }) => {
         vertical: 'top',
         horizontal: 'left',
       }}
-      badgeContent={<StarIcon style={{ color: pink[500] }} />}>
+      badgeContent={<StarIcon style={{ color: green[500] }} />}>
       {avatar}
     </Badge>
   ) : avatar;

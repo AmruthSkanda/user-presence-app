@@ -8,9 +8,7 @@ import { useHistory } from "react-router-dom";
 const LoginContainer = (props) => {
   const history = useHistory();
   const { loggingIn, loginSuccess } = props;
-  useEffect(() => {
-    console.log("REMOUNTING LOGIN....")
-  }, [])
+
   useEffect(() => {
     if (!loggingIn && loginSuccess) {
       history.push("/app/home");
